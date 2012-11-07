@@ -1,0 +1,14 @@
+{spawn, exec} = require 'child_process'
+
+launch = (cmd, options=[]) ->
+  app = spawn cmd, options
+  app.stdout.pipe(process.stdout)
+  app.stderr.pipe(process.stderr)
+
+build = ->
+  cmd = 'coffee'
+  if process.platform.match(/^win/)?
+    cmd += '.cmd'
+  launch cmd, ['-c', '-b', '-o', '..', '.' ]
+
+task 'sbuild', 'Build JavaScript', build
