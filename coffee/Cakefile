@@ -1,14 +1,27 @@
 {spawn, exec} = require 'child_process'
+fs = require 'fs'
+stylus = require 'stylus'
 
 launch = (cmd, options=[]) ->
   app = spawn cmd, options
   app.stdout.pipe(process.stdout)
   app.stderr.pipe(process.stderr)
 
-build = ->
+buildJS = ->
   cmd = 'coffee'
   if process.platform.match(/^win/)?
     cmd += '.cmd'
   launch cmd, ['-c', '-b', '-o', '..', '.' ]
 
-task 'sbuild', 'Build JavaScript', build
+buildCSS = ->
+  stylus.render fs.readFileSync('../stylus/app.stylus', 'utf-8'), {filename: 'app.css'}, (err, css) ->
+    if err?
+      console.log err
+    else
+      fs.writeFileSync('../css/app.css', css)
+
+buildAll = ->
+  buildJS()
+  buildCSS()
+
+task 'sbuild', 'Build JavaScript and CSS', buildAll
