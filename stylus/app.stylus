@@ -1,0 +1,7 @@
+body
+  background-color #0f1219
+  font-family 'PT Sans', sans-serif
+
+.header
+  h1
+    color #f5efe7
