@@ -1,7 +1,6 @@
 r = require 'rethinkdb'
 fs = require 'fs'
 _ = require 'underscore'
-request = require 'request'
 
 r.connect({},
   (conn)->
