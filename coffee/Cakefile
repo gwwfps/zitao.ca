@@ -1,6 +1,7 @@
 {spawn, exec} = require 'child_process'
 fs = require 'fs'
 stylus = require 'stylus'
+nib = require 'nib'
 
 launch = (cmd, options=[]) ->
   app = spawn cmd, options
@@ -14,7 +15,12 @@ buildJS = ->
   launch cmd, ['-c', '-b', '-o', '..', '.' ]
 
 buildCSS = ->
-  stylus.render fs.readFileSync('../stylus/app.stylus', 'utf-8'), {filename: 'app.css'}, (err, css) ->
+  stylus(fs.readFileSync('../stylus/app.stylus', 'utf-8'))
+  .set('filename', 'app.css')
+  .set('compress', true)
+  .use(nib())
+  .import('nib')
+  .render (err, css) ->
     if err?
       console.log err
     else
