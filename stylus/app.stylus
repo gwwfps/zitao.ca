@@ -1,7 +1,29 @@
-body
-  background-color #0f1219
-  font-family 'PT Sans', sans-serif
+@import 'nib'
 
-.header
-  h1
-    color #f5efe7
+bg-color = #051126
+text-color = #F7F3EB
+
+body
+  background-color bg-color
+  padding-top 20px
+
+text-shadow(color)
+  text-shadow 0 1px 3px color, 0 -1px 3px color, 1px 0 3px color, -1px 0 3px color
+
+ul.navigation
+  text-shadow(rgba(255, 255, 255, 0.6))
+  list-style none
+  li a
+    color text-color
+    font-size 24px
+    font-weight normal
+    text-align center
+    &:hover
+      text-shadow(rgba(255, 255, 255, 1))
+
+.content
+  box-shadow 0 0 20px #869BBF inset
+  border 1px solid #869BBF
+  background-color text-color
+  padding 15px 30px
+  border-radius 2px
