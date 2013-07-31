@@ -10,11 +10,20 @@ module.exports = (grunt) ->
           dest: 'main/',
           ext: '.js'
         ]
+    stylus:
+      css:
+        options:
+          use: [
+            require 'nib'
+          ]
+        files:
+          'css/app.css': 'stylus/app.styl'
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
+  grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-wisp-compile'
 
-  grunt.registerTask 'default', ['clean', 'wisp', 'run']
+  grunt.registerTask 'default', ['clean', 'wisp', 'stylus', 'run']
 
   grunt.registerTask 'run', () ->
     require('./main/main.js')

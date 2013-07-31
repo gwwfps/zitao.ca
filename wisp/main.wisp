@@ -5,12 +5,16 @@
 
 (def app (express))
 
+(defmacro from-base [path]
+  `(+ __dirname "/../" ~path))
+
 (do
   (app.configure
     (fn []
-      (app.set :views (+ __dirname "/../views"))
+      (app.set :views (from-base "views"))
       (app.engine :jade (.-__express jade))
       (app.set "view engine" :jade)
+      (app.use "/css" (express.static (from-base "css")))
       nil))
 
   (app.get "/"
