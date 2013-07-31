@@ -1,29 +1,36 @@
 @import 'nib'
 
-bg-color = #051126
-text-color = #F7F3EB
+dark = #0f1a2d
+light = #f1fafa  
 
 body
-  background-color bg-color
-  padding-top 20px
+  background light
+  color dark
 
 text-shadow(color)
   text-shadow 0 1px 3px color, 0 -1px 3px color, 1px 0 3px color, -1px 0 3px color
 
-ul.navigation
-  text-shadow(rgba(255, 255, 255, 0.6))
-  list-style none
-  li a
-    color text-color
-    font-size 24px
-    font-weight normal
-    text-align center
-    &:hover
-      text-shadow(rgba(255, 255, 255, 1))
+.navigation
+  background-color dark 
+  position fixed
+  right 0
+  height 100%
+  ul
+    list-style none
+    padding-left: 1em
+    li 
+      margin-top 1em
+      a
+        color light
+        font-size 1.2em
+        font-weight bold
+        text-align center
+        text-decoration none
+        &:hover
+          text-shadow(rgba(255, 255, 255, 0.5))
 
 .content
-  box-shadow 0 0 20px #869BBF inset
-  border 1px solid #869BBF
-  background-color text-color
-  padding 15px 30px
-  border-radius 2px
+  // box-shadow 0 0 20px #869BBF inset
+  // border 1px solid #869BBF  
+  // border-radius 2px
+  padding 1em 2em

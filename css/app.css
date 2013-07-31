@@ -1,5 +1,0 @@
-body{background-color:#051126;padding-top:20px}
-ul.navigation{text-shadow:0 1px 3px rgba(255,255,255,0.6),0 -1px 3px rgba(255,255,255,0.6),1px 0 3px rgba(255,255,255,0.6),-1px 0 3px rgba(255,255,255,0.6);list-style:none;}
-ul.navigation li a{color:#f7f3eb;font-size:24px;font-weight:normal;text-align:center;}
-ul.navigation li a:hover{text-shadow:0 1px 3px #fff,0 -1px 3px #fff,1px 0 3px #fff,-1px 0 3px #fff}
-.content{-webkit-box-shadow:0 0 20px #869bbf inset;box-shadow:0 0 20px #869bbf inset;border:1px solid #869bbf;background-color:#f7f3eb;padding:15px 30px;-webkit-border-radius:2px;border-radius:2px}

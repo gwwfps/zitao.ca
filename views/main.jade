@@ -4,18 +4,25 @@ html(lang="en", class="no-js")
     title="Zitao"
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width")
-    link(rel="stylesheet", href="css/foundation.min.css")
-    link(rel="stylesheet", href='http://fonts.googleapis.com/css?family=PT+Sans')
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/pure/0.2.1/pure-min.css")
     link(rel="stylesheet", href="css/app.css")
   body
-    .row
-      .nine.columns
+    .pure-g
+      .pure-u-7-8
         .content
           h3 Blog post title
           p Post content.
-      .three.columns
-        ul.navigation
+      .pure-u-1-8.navigation
+        ul
           li: a(href='#') About
           li: a(href='#') Blog
           li: a(href='#') Contact
     
+    script.
+      (function() {
+        var config = {
+          kitId: 'yea5gsg',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
