@@ -1,7 +1,8 @@
 (ns zitao.ca.main
   (:require
     [express]
-    [jade]))
+    [jade]
+    [zitao.ca.blog :as blog]))
 
 (def app (express))
 
@@ -17,9 +18,7 @@
       (app.use "/css" (express.static (from-base "css")))
       nil))
 
-  (app.get "/"
-    (fn [req, res]
-      (res.render "main.jade")))
+  (app.get "/" (.-index blog))
   
   (app.listen 3000)  
   (console.log "Started application"))

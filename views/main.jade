@@ -10,8 +10,10 @@ html(lang="en", class="no-js")
     .pure-g
       .pure-u-7-8
         .content
-          h3 Blog post title
-          p Post content.
+          for post in posts
+            .post
+              h3= post.title
+              .body !{post.content}
       .pure-u-1-8.navigation
         ul
           li: a(href='#') About
