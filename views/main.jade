@@ -1,7 +1,9 @@
 doctype 5
 html(lang="en", class="no-js")
   head
-    title="Zitao"
+    title
+      block title
+        | Zitao
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/pure/0.2.1/pure-min.css")
@@ -16,7 +18,7 @@ html(lang="en", class="no-js")
               include includes/post
       .pure-u-1-8.navigation
         ul
-          li: a(href='/about') About
+          li: a(href='/page/about') About
           li: a(href='/') Blog
           li: a(href='mailto:web@zitao.ca') Email
           li: a(href='https://github.com/gwwfps') Github

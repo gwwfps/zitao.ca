@@ -3,12 +3,25 @@
     [express]
     [jade]
     [zitao.ca.blog :as blog]
+    [zitao.ca.pages :as pages]
     [zitao.ca.locals :as locals]))
 
 (def app (express))
 
 (defmacro from-base [path]
   `(+ __dirname "/../" ~path))
+
+(defn- route
+  [& routes]
+  (.map routes
+    (fn [params]
+      (apply
+        (fn
+          ([method path handler] (
+            (get app method) path handler))
+          ([path handler] (
+            app.get path handler)))
+        params))))
 
 (do
   (app.configure
@@ -21,7 +34,10 @@
 
   (app.locals locals.properties)
 
-  (app.get "/" (.-index blog))
+  (route 
+    ["/" blog.index]
+    ["/post/:id" blog.post]
+    ["/page/:id" pages.page])
   
   (app.listen 3000)  
   (console.log "Started application"))

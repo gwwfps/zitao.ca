@@ -1,0 +1,9 @@
+extends main
+
+block title
+  | !{page.title}
+
+block content
+  .post
+    h1= page.title
+    .post-body !{markdown(page.content)}
