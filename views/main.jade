@@ -5,20 +5,24 @@ html(lang="en", class="no-js")
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/pure/0.2.1/pure-min.css")
-    link(rel="stylesheet", href="css/app.css")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css")    
+    link(rel="stylesheet", href="/css/app.css")
   body
     .pure-g
       .pure-u-7-8
         .content
           for post in posts
             .post
-              h3= post.title
-              .body !{post.content}
+              h1.post-title: a(href=post.url)= post.title
+              .post-time(title=post.iso) Posted #{post.time}
+              .post-body !{post.content}
+              hr
       .pure-u-1-8.navigation
         ul
-          li: a(href='#') About
-          li: a(href='#') Blog
-          li: a(href='#') Contact
+          li: a(href='/about') About
+          li: a(href='/') Blog
+          li: a(href='mailto:web@zitao.ca') Email
+          li: a(href='http://github.com/gwwfps') Github
     
     script.
       (function() {

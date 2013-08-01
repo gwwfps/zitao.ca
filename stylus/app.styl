@@ -1,11 +1,18 @@
 @import 'nib'
 
 dark = #0f1a2d
-light = #f1fafa  
+light = #f1fafa
+tk-badge-bg = #cccccc
 
 body
   background light
   color dark
+
+a
+  color lighten(dark, 30%)
+  text-decoration none
+  &:hover
+    color lighten(dark, 50%)
 
 text-shadow(color)
   text-shadow 0 1px 3px color, 0 -1px 3px color, 1px 0 3px color, -1px 0 3px color
@@ -28,9 +35,38 @@ text-shadow(color)
         text-decoration none
         &:hover
           text-shadow(rgba(255, 255, 255, 0.5))
+  &::after
+    content ''
+    display block
+    background tk-badge-bg
+    height 25px
+    width 12.5%
+    position fixed
+    right 0
+    bottom 0
 
 .content
-  // box-shadow 0 0 20px #869BBF inset
-  // border 1px solid #869BBF  
-  // border-radius 2px
   padding 1em 2em
+
+.post
+  .post-title
+    margin-bottom 0.2em
+    a
+      color dark
+      &:hover
+        color dark
+        &::after
+          margin-left 0.5em
+          color desaturate(lighten(dark, 70%), 80%)
+          font-size 0.7em
+          content '\F02E'
+          font-family 'FontAwesome'
+  .post-time
+    font-size 0.8em
+    color desaturate(lighten(dark, 50%), 50%)
+    margin-bottom 0.3em
+  hr
+    height 1px
+    border 0
+    background linear-gradient(left, light, desaturate(lighten(dark, 80%), 30%), light)
+    margin 2em
