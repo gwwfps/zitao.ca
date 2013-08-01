@@ -2,7 +2,8 @@
   (:require
     [express]
     [jade]
-    [zitao.ca.blog :as blog]))
+    [zitao.ca.blog :as blog]
+    [zitao.ca.locals :as locals]))
 
 (def app (express))
 
@@ -17,6 +18,8 @@
       (app.set "view engine" :jade)
       (app.use "/css" (express.static (from-base "css")))
       nil))
+
+  (app.locals locals.properties)
 
   (app.get "/" (.-index blog))
   
