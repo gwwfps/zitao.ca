@@ -1,4 +1,7 @@
-(ns zitao.ca.pages)
+(ns zitao.ca.pages
+  (:require
+    [zitao.ca.storage :as storage]
+    [zitao.ca.utils :refer [render]]))
 
 (defn page [req res]
-  (res.render "page.jade" {:page {:content "something something" :title "About me"}}))
+  (render res (storage.query-doc req.params.id) "page.jade" :page))

@@ -1,20 +1,10 @@
 (ns zitao.ca.blog
-  (:require
-    [wisp.sequence :refer [first]]
-    [zitao.ca.storage :as storage]))
-
-(def posts [
-    {:id "article-1" :title "Abc Defg 1" :content " __Getting Started__
-This plugin requires Grunt `~0.4.1`" :timestamp 13213567}
-    {:id "article-2" :title "Abc Defg2" :content " __Getting Started__
-This plugin requires Grunt `~0.4.1`" :timestamp 13213567}
-    ])
+  (:require    
+    [zitao.ca.storage :as storage]
+    [zitao.ca.utils :refer [render]]))
 
 (defn index [req res]
-  (.then (storage.posts)
-    (fn [posts]
-      (res.render "main.jade" {:posts posts}))))
+  (render res (storage.posts) "main.jade" :posts))
 
 (defn post [req res]
-  (res.render "post.jade" {:post (first posts)}))
-
+  (render res (storage.query-doc req.params.id) "post.jade" :post))
