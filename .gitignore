@@ -178,4 +178,5 @@ results
 npm-debug.log
 node_modules
 js
+config.json
 css
