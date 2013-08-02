@@ -4,7 +4,8 @@
     [jade]
     [zitao.ca.blog :as blog]
     [zitao.ca.pages :as pages]
-    [zitao.ca.locals :as locals]))
+    [zitao.ca.locals :as locals]
+    [zitao.ca.config :refer [settings]]))
 
 (def app (express))
 
@@ -39,5 +40,5 @@
     ["/post/:id" blog.post]
     ["/page/:id" pages.page])
   
-  (app.listen 3000)  
+  (app.listen (:app-port settings) "localhost")  
   (console.log "Started application"))
