@@ -1,3 +1,4 @@
 {
-  "couch-url": "http://localhost:5984/zitao-ca"
+  "couch-url": "http://localhost:5984/zitao-ca",
+  "couch-design-doc-id": "_design/web"
 }

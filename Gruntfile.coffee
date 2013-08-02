@@ -51,10 +51,9 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'couch-id', () ->
     bulk = grunt.file.readJSON 'tmp/app.json'
-    bulk.docs[0]._id = '_design/web'    
+    bulk.docs[0]._id = config['couch-design-doc-id'] 
     grunt.file.write 'tmp/app.json', JSON.stringify(bulk)
 
   grunt.registerTask 'run', () ->
-    main = require './js/main.js'
-    main.start config
+    require './js/main.js'
     this.async()

@@ -1,5 +1,5 @@
 .post
-  h1.post-title: a(href='/post/'+post.id)= post.title
+  h1.post-title: a(href='/post/'+post._id)= post.title
   .post-time(title=iso(post.timestamp)) Posted !{ago(post.timestamp)}
   .post-body !{markdown(post.content)}
   hr
