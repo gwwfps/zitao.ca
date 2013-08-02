@@ -23,22 +23,23 @@
             app.get path handler)))
         params))))
 
-(do
-  (app.configure
-    (fn []
-      (app.set :views (from-base "views"))
-      (app.engine :jade (.-__express jade))
-      (app.set "view engine" :jade)
-      (app.use "/css" (express.static (from-base "css")))
-      nil))
+(defn start [config]
+  (do
+    (app.configure
+      (fn []
+        (app.set :views (from-base "views"))
+        (app.engine :jade (.-__express jade))
+        (app.set "view engine" :jade)
+        (app.use "/css" (express.static (from-base "css")))
+        nil))
 
-  (app.locals locals.properties)
+    (app.locals locals.properties)
+    (app.locals {:config config})
 
-  (route 
-    ["/" blog.index]
-    ["/post/:id" blog.post]
-    ["/page/:id" pages.page])
-  
-  (app.listen 3000)  
-  (console.log "Started application"))
-
+    (route 
+      ["/" blog.index]
+      ["/post/:id" blog.post]
+      ["/page/:id" pages.page])
+    
+    (app.listen 3000)  
+    (console.log "Started application")))

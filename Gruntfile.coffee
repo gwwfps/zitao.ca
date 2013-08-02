@@ -1,13 +1,25 @@
 module.exports = (grunt) ->
+  config = grunt.file.readJSON 'config.json'
+
+  couchAppJsonPath = 'tmp/app.json'
+  couchCompileOptions =
+    app:
+      files: {}
+  couchCompileOptions.app.files[couchAppJsonPath] = 'tmp/couch'
+  couchPushOptions =
+    localhost:
+      files: {}
+  couchPushOptions.localhost.files[config['couch-url']] = couchAppJsonPath
+
   grunt.initConfig
-    clean: ['main', 'tmp']
+    clean: ['js', 'tmp']
     wisp:
-      main:
+      js:
         files: [
           expand: true,
           cwd: 'wisp/',
           src: ['**/*.wisp'],
-          dest: 'main/',
+          dest: 'js/',
           ext: '.js'
         ]
       couch:
@@ -26,14 +38,9 @@ module.exports = (grunt) ->
           ]
         files:
           'css/app.css': 'stylus/app.styl'
-    'couch-compile':
-      app:
-        files:
-          'tmp/app.json': 'tmp/couch'
-    'couch-push':
-      localhost:
-        files:
-          'http://localhost:5984/zitao-ca': 'tmp/app.json'
+    'couch-compile': couchCompileOptions      
+    'couch-push': couchPushOptions
+      
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
@@ -48,5 +55,6 @@ module.exports = (grunt) ->
     grunt.file.write 'tmp/app.json', JSON.stringify(bulk)
 
   grunt.registerTask 'run', () ->
-    require './main/main.js'
+    main = require './js/main.js'
+    main.start config
     this.async()
