@@ -40,5 +40,5 @@
     ["/post/:id" blog.post]
     ["/page/:id" pages.page])
   
-  (app.listen (:app-port settings) "localhost")  
+  (app.listen (:app-port settings) (:app-host settings))  
   (console.log "Started application"))
